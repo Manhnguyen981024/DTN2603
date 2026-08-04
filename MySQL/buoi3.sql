@@ -209,7 +209,7 @@ WHERE create_date < '2019-12-20';
 --Question 13: Xóa tất cả các question có nội dung bắt đầu bằng từ "câu hỏi"
 DELETE
 FROM question
-WHERE content LIKE 'Câu hỏi%';
+WHERE content LIKE 'câu hỏi%';
 
 --Question 14: Update thông tin của account có id = 5 thành tên "Nguyễn Bá Lộc" và email thành loc.nguyenba@vti.com.vn
 UPDATE account
