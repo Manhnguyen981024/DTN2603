@@ -6,7 +6,7 @@ INSERT INTO department (department_name) VALUES
 ('Human Resource'),
 ('Accounting'),
 ('Marketing'),
-('Sales'),
+('Sale'),
 ('Customer Service'),
 ('Security'),
 ('Finance'),
@@ -146,7 +146,7 @@ FROM department;
 --Question 3: lấy ra id của phòng ban "Sale"
 SELECT department_id
 FROM department
-WHERE department_name = 'Sales';
+WHERE department_name = 'Sale';
 
 --Question 4: lấy ra thông tin account có full name dài nhất
 SELECT *
@@ -209,7 +209,7 @@ WHERE create_date < '2019-12-20';
 --Question 13: Xóa tất cả các question có nội dung bắt đầu bằng từ "câu hỏi"
 DELETE
 FROM question
-WHERE content LIKE 'Câu hỏi%';
+WHERE content LIKE 'câu hỏi%';
 
 --Question 14: Update thông tin của account có id = 5 thành tên "Nguyễn Bá Lộc" và email thành loc.nguyenba@vti.com.vn
 UPDATE account
