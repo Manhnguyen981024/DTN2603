@@ -373,7 +373,7 @@ BEGIN
     FROM months                AS m
         LEFT JOIN question     AS q
             ON  MONTH(q.create_date)    = m.month_no
-                AND YEAR(q.create_date) = YEAR()
+                AND YEAR(q.create_date) = YEAR(curdate())
     GROUP BY m.month_no
     ORDER BY m.month_no;
 END $$
