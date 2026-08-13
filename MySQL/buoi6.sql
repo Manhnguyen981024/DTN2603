@@ -24,10 +24,9 @@ CREATE PROCEDURE
     sp_accounts_per_groups()
 BEGIN
     SELECT g.group_name
-        , COUNT(a.account_id) AS so_luong
+        , COUNT(ga.account_id) AS so_luong
     FROM `group`              AS g
-        LEFT JOIN account     AS a
-            ON  g.creator_id = a.account_id
+		LEFT JOIN group_account as ga ON g.group_id = ga.group_id
     GROUP BY g.group_id;
 
 END $$
