@@ -47,7 +47,7 @@ BEGIN
     FROM type_question     AS tq
         LEFT JOIN question AS q
             ON  tq.type_id     = q.type_id
-    WHERE MONTH(q.create_date) = MONTH(CURRENT_DATE)
+    WHERE MONTH(q.create_date) = MONTH(CURRENT_DATE) AND YEAR(q.create_date) = YEAR(CURRENT_DATE) 
     GROUP BY tq.type_id;
 
 END $$
