@@ -24,10 +24,9 @@ CREATE PROCEDURE
     sp_accounts_per_groups()
 BEGIN
     SELECT g.group_name
-        , COUNT(a.account_id) AS so_luong
+        , COUNT(ga.account_id) AS so_luong
     FROM `group`              AS g
-        LEFT JOIN account     AS a
-            ON  g.creator_id = a.account_id
+		LEFT JOIN group_account as ga ON g.group_id = ga.group_id
     GROUP BY g.group_id;
 
 END $$
@@ -48,7 +47,7 @@ BEGIN
     FROM type_question     AS tq
         LEFT JOIN question AS q
             ON  tq.type_id     = q.type_id
-    WHERE MONTH(q.create_date) = MONTH(CURRENT_DATE)
+    WHERE MONTH(q.create_date) = MONTH(CURRENT_DATE) AND YEAR(q.create_date) = YEAR(CURRENT_DATE) 
     GROUP BY tq.type_id;
 
 END $$
@@ -373,7 +372,7 @@ BEGIN
     FROM months                AS m
         LEFT JOIN question     AS q
             ON  MONTH(q.create_date)    = m.month_no
-                AND YEAR(q.create_date) = YEAR()
+                AND YEAR(q.create_date) = YEAR(curdate())
     GROUP BY m.month_no
     ORDER BY m.month_no;
 END $$
