@@ -1,27 +1,26 @@
 import java.time.LocalDate;
 
 public class Question {
-
     private int questionId;
     private String content;
-    private int categoryId;
-    private int typeId;
-    private int creatorId;
+    private CategoryQuestion categoryQuestion;
+    private TypeQuestion typeQuestion;
+    private Account creator;
     private LocalDate createDate;
 
     public Question(
             int questionId,
             String content,
-            int categoryId,
-            int typeId,
-            int creatorId,
+            CategoryQuestion categoryQuestion,
+            TypeQuestion typeQuestion,
+            Account creator,
             LocalDate createDate) {
 
         this.questionId = questionId;
         this.content = content;
-        this.categoryId = categoryId;
-        this.typeId = typeId;
-        this.creatorId = creatorId;
+        this.categoryQuestion = categoryQuestion;
+        this.typeQuestion = typeQuestion;
+        this.creator = creator;
         this.createDate = createDate;
     }
 
@@ -33,16 +32,16 @@ public class Question {
         return content;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public CategoryQuestion getCategoryQuestion() {
+        return categoryQuestion;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public TypeQuestion getTypeQuestion() {
+        return typeQuestion;
     }
 
-    public int getCreatorId() {
-        return creatorId;
+    public Account getCreator() {
+        return creator;
     }
 
     public LocalDate getCreateDate() {

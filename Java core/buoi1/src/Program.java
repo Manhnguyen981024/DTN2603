@@ -27,15 +27,15 @@ public class Program {
         // 3. Account
         Account account1 = new Account(
                 1, "dev1@gmail.com", "dev1", "Nguyen Van A",
-                3, 1, LocalDate.of(2026, 8, 1));
+                department3, position1, LocalDate.of(2026, 8, 1));
 
         Account account2 = new Account(
                 2, "tester1@gmail.com", "tester1", "Nguyen Van B",
-                3, 2, LocalDate.of(2026, 8, 2));
+                department3, position2, LocalDate.of(2026, 8, 2));
 
         Account account3 = new Account(
                 3, "pm1@gmail.com", "pm1", "Nguyen Van C",
-                3, 3, LocalDate.of(2026, 8, 3));
+                department3, position3, LocalDate.of(2026, 8, 3));
 
         System.out.println("\nAccount:");
         System.out.println(account1.getUsername());
@@ -43,9 +43,9 @@ public class Program {
         System.out.println(account3.getUsername());
 
         // 4. Group
-        Group group1 = new Group(1, "Java Team", 1, LocalDate.of(2026, 8, 1));
-        Group group2 = new Group(2, "Testing Team", 2, LocalDate.of(2026, 8, 2));
-        Group group3 = new Group(3, "Project Team", 3, LocalDate.of(2026, 8, 3));
+        Group group1 = new Group(1, "Java Team", account1, LocalDate.of(2026, 8, 1));
+        Group group2 = new Group(2, "Testing Team", account2, LocalDate.of(2026, 8, 2));
+        Group group3 = new Group(3, "Project Team", account3, LocalDate.of(2026, 8, 3));
 
         System.out.println("\nGroup:");
         System.out.println(group1.getGroupName());
@@ -53,14 +53,14 @@ public class Program {
         System.out.println(group3.getGroupName());
 
         // 5. GroupAccount
-        GroupAccount groupAccount1 = new GroupAccount(1, 1, LocalDate.of(2026, 8, 1));
-        GroupAccount groupAccount2 = new GroupAccount(1, 2, LocalDate.of(2026, 8, 2));
-        GroupAccount groupAccount3 = new GroupAccount(2, 3, LocalDate.of(2026, 8, 3));
+        GroupAccount groupAccount1 = new GroupAccount(group1, account1, LocalDate.of(2026, 8, 1));
+        GroupAccount groupAccount2 = new GroupAccount(group1, account2, LocalDate.of(2026, 8, 2));
+        GroupAccount groupAccount3 = new GroupAccount(group2, account3, LocalDate.of(2026, 8, 3));
 
         System.out.println("\nGroupAccount:");
-        System.out.println(groupAccount1.getGroupId());
-        System.out.println(groupAccount2.getGroupId());
-        System.out.println(groupAccount3.getGroupId());
+        System.out.println(groupAccount1.getGroup().getGroupName());
+        System.out.println(groupAccount2.getGroup().getGroupName());
+        System.out.println(groupAccount3.getGroup().getGroupName());
 
         // 6. TypeQuestion
         TypeQuestion typeQuestion1 = new TypeQuestion(1, "Essay");
@@ -84,13 +84,13 @@ public class Program {
 
         // 8. Question
         Question question1 = new Question(
-                1, "Java là gì?", 1, 1, 1, LocalDate.of(2026, 8, 1));
+                1, "Java là gì?", category1, typeQuestion1, account1, LocalDate.of(2026, 8, 1));
 
         Question question2 = new Question(
-                2, "OOP là gì?", 1, 2, 1, LocalDate.of(2026, 8, 2));
+                2, "OOP là gì?", category1, typeQuestion2, account1, LocalDate.of(2026, 8, 2));
 
         Question question3 = new Question(
-                3, "SQL JOIN là gì?", 3, 1, 2, LocalDate.of(2026, 8, 3));
+                3, "SQL JOIN là gì?", category3, typeQuestion1, account2, LocalDate.of(2026, 8, 3));
 
         System.out.println("\nQuestion:");
         System.out.println(question1.getContent());
@@ -99,13 +99,13 @@ public class Program {
 
         // 9. Answer
         Answer answer1 = new Answer(
-                1, "Java là ngôn ngữ lập trình", 1, true);
+                1, "Java là ngôn ngữ lập trình", question1, true);
 
         Answer answer2 = new Answer(
-                2, "Java là database", 1, false);
+                2, "Java là database", question1, false);
 
         Answer answer3 = new Answer(
-                3, "Java hỗ trợ OOP", 1, true);
+                3, "Java hỗ trợ OOP", question1, true);
 
         System.out.println("\nAnswer:");
         System.out.println(answer1.getContent());
@@ -114,15 +114,15 @@ public class Program {
 
         // 10. Exam
         Exam exam1 = new Exam(
-                1, "EX001", "Java Basic", 1, 60, 1,
+                1, "EX001", "Java Basic", category1, 60, account1,
                 LocalDate.of(2026, 8, 1));
 
         Exam exam2 = new Exam(
-                2, "EX002", "Java OOP", 1, 90, 1,
+                2, "EX002", "Java OOP", category1, 90, account1,
                 LocalDate.of(2026, 8, 2));
 
         Exam exam3 = new Exam(
-                3, "EX003", "SQL Basic", 3, 60, 2,
+                3, "EX003", "SQL Basic", category3, 60, account2,
                 LocalDate.of(2026, 8, 3));
 
         System.out.println("\nExam:");
@@ -131,24 +131,13 @@ public class Program {
         System.out.println(exam3.getTitle());
 
         // 11. ExamQuestion
-        ExamQuestion examQuestion1 = new ExamQuestion(1, 1);
-        ExamQuestion examQuestion2 = new ExamQuestion(1, 2);
-        ExamQuestion examQuestion3 = new ExamQuestion(2, 3);
+        ExamQuestion examQuestion1 = new ExamQuestion(exam1, question1);
+        ExamQuestion examQuestion2 = new ExamQuestion(exam1, question2);
+        ExamQuestion examQuestion3 = new ExamQuestion(exam2, question3);
 
         System.out.println("\nExamQuestion:");
-        System.out.println(examQuestion1.getQuestionId());
-        System.out.println(examQuestion2.getQuestionId());
-        System.out.println(examQuestion3.getQuestionId());
-
-
-        int[] scores = {90, 80, 70, 60};
-
-        for (int score : scores) {
-            System.out.println(score);
-        }
-
-        Integer a = 10000;
-        Integer b = 10000;
-        System.out.println(a == b);
+        System.out.println(examQuestion1.getQuestion().getContent());
+        System.out.println(examQuestion2.getQuestion().getContent());
+        System.out.println(examQuestion3.getQuestion().getContent());
     }
 }

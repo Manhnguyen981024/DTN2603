@@ -1,5 +1,4 @@
 public class Position {
-
     private int positionId;
     private String positionName;
 

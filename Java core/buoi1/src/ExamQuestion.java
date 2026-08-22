@@ -1,18 +1,17 @@
 public class ExamQuestion {
+    private Exam exam;
+    private Question question;
 
-    private int examId;
-    private int questionId;
-
-    public ExamQuestion(int examId, int questionId) {
-        this.examId = examId;
-        this.questionId = questionId;
+    public ExamQuestion(Exam exam, Question question) {
+        this.exam = exam;
+        this.question = question;
     }
 
-    public int getExamId() {
-        return examId;
+    public Exam getExam() {
+        return exam;
     }
 
-    public int getQuestionId() {
-        return questionId;
+    public Question getQuestion() {
+        return question;
     }
 }

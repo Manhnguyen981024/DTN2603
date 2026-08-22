@@ -1,14 +1,13 @@
 public class Answer {
-
     private int answerId;
     private String content;
-    private int questionId;
+    private Question question;
     private boolean isCorrect;
 
-    public Answer(int answerId, String content, int questionId, boolean isCorrect) {
+    public Answer(int answerId, String content, Question question, boolean isCorrect) {
         this.answerId = answerId;
         this.content = content;
-        this.questionId = questionId;
+        this.question = question;
         this.isCorrect = isCorrect;
     }
 
@@ -20,8 +19,8 @@ public class Answer {
         return content;
     }
 
-    public int getQuestionId() {
-        return questionId;
+    public Question getQuestion() {
+        return question;
     }
 
     public boolean isCorrect() {

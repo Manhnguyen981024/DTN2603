@@ -1,23 +1,22 @@
 import java.time.LocalDate;
 
 public class GroupAccount {
-
-    private int groupId;
-    private int accountId;
+    private Group group;
+    private Account account;
     private LocalDate joinDate;
 
-    public GroupAccount(int groupId, int accountId, LocalDate joinDate) {
-        this.groupId = groupId;
-        this.accountId = accountId;
+    public GroupAccount(Group group, Account account, LocalDate joinDate) {
+        this.group = group;
+        this.account = account;
         this.joinDate = joinDate;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public Group getGroup() {
+        return group;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public Account getAccount() {
+        return account;
     }
 
     public LocalDate getJoinDate() {

@@ -1,16 +1,15 @@
 import java.time.LocalDate;
 
 public class Group {
-
     private int groupId;
     private String groupName;
-    private int creatorId;
+    private Account creator;
     private LocalDate createDate;
 
-    public Group(int groupId, String groupName, int creatorId, LocalDate createDate) {
+    public Group(int groupId, String groupName, Account creator, LocalDate createDate) {
         this.groupId = groupId;
         this.groupName = groupName;
-        this.creatorId = creatorId;
+        this.creator = creator;
         this.createDate = createDate;
     }
 
@@ -22,8 +21,8 @@ public class Group {
         return groupName;
     }
 
-    public int getCreatorId() {
-        return creatorId;
+    public Account getCreator() {
+        return creator;
     }
 
     public LocalDate getCreateDate() {

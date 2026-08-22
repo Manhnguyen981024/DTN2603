@@ -1,13 +1,12 @@
 import java.time.LocalDate;
 
 public class Account {
-
     private int accountId;
     private String email;
     private String username;
     private String fullName;
-    private int departmentId;
-    private int positionId;
+    private Department department;
+    private Position position;
     private LocalDate createDate;
 
     public Account(
@@ -15,16 +14,16 @@ public class Account {
             String email,
             String username,
             String fullName,
-            int departmentId,
-            int positionId,
+            Department department,
+            Position position,
             LocalDate createDate) {
 
         this.accountId = accountId;
         this.email = email;
         this.username = username;
         this.fullName = fullName;
-        this.departmentId = departmentId;
-        this.positionId = positionId;
+        this.department = department;
+        this.position = position;
         this.createDate = createDate;
     }
 
@@ -44,12 +43,12 @@ public class Account {
         return fullName;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public int getPositionId() {
-        return positionId;
+    public Position getPosition() {
+        return position;
     }
 
     public LocalDate getCreateDate() {

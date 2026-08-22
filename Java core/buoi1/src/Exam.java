@@ -1,30 +1,29 @@
 import java.time.LocalDate;
 
 public class Exam {
-
     private int examId;
     private String code;
     private String title;
-    private int categoryId;
+    private CategoryQuestion categoryQuestion;
     private int duration;
-    private int creatorId;
+    private Account creator;
     private LocalDate createDate;
 
     public Exam(
             int examId,
             String code,
             String title,
-            int categoryId,
+            CategoryQuestion categoryQuestion,
             int duration,
-            int creatorId,
+            Account creator,
             LocalDate createDate) {
 
         this.examId = examId;
         this.code = code;
         this.title = title;
-        this.categoryId = categoryId;
+        this.categoryQuestion = categoryQuestion;
         this.duration = duration;
-        this.creatorId = creatorId;
+        this.creator = creator;
         this.createDate = createDate;
     }
 
@@ -40,16 +39,16 @@ public class Exam {
         return title;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public CategoryQuestion getCategoryQuestion() {
+        return categoryQuestion;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public int getCreatorId() {
-        return creatorId;
+    public Account getCreator() {
+        return creator;
     }
 
     public LocalDate getCreateDate() {
