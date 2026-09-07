@@ -12,6 +12,11 @@ public class Exercise5 {
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public static void run() {
+        Character a = null;
+
+        long aa = 10L;
+        int mm = aa;
+
         System.out.println("\n===== EXERCISE 5: INPUT FROM CONSOLE =====");
 
         // Question 1:Viết lệnh cho phép người dùng nhập 3 số nguyên vào chương trình.

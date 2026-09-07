@@ -139,5 +139,9 @@ public class Program {
         System.out.println(examQuestion1.getQuestion().getContent());
         System.out.println(examQuestion2.getQuestion().getContent());
         System.out.println(examQuestion3.getQuestion().getContent());
+
+        int a = 1000;
+        int b = 1000;
+        System.out.println(a == b);
     }
 }

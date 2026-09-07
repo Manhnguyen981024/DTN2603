@@ -156,6 +156,7 @@ public class Exercise4 {
     private static void question14(String text, char oldCharacter, char newCharacter) {
         System.out.println("\nQuestion 14:");
         StringBuilder result = new StringBuilder();
+        text.replaceAll("a", "b");
         for (int index = 0; index < text.length(); index++) {
             result.append(text.charAt(index) == oldCharacter ? newCharacter : text.charAt(index));
         }
