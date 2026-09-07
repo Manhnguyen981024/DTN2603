@@ -59,10 +59,4 @@ public abstract class TaiLieu {
             }
         }
     }
-
-    public void hienThi() {
-        System.out.println("Mã tài liệu: " + maTaiLieu);
-        System.out.println("Tên nhà xuất bản: " + tenNhaXuatBan);
-        System.out.println("Số bản phát hành: " + soBanPhatHanh);
-    }
 }

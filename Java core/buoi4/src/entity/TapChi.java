@@ -72,12 +72,4 @@ public class TapChi extends TaiLieu {
             }
         }
     }
-
-    @Override
-    public void hienThi() {
-        System.out.println("== TẠP CHÍ ==");
-        super.hienThi();
-        System.out.println("Số phát hành: " + soPhatHanh);
-        System.out.println("Tháng phát hành: " + thangPhatHanh.getTen());
-    }
 }

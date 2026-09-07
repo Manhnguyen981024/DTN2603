@@ -10,13 +10,6 @@ public class Sach extends TaiLieu {
 
     public Sach() {}
 
-    public Sach(String maTaiLieu, String tenNhaXuatBan, int soBanPhatHanh,
-                String tenTacGia, int soTrang) {
-        super(maTaiLieu, tenNhaXuatBan, soBanPhatHanh);
-        this.tenTacGia = tenTacGia;
-        this.soTrang = soTrang;
-    }
-
     public String getTenTacGia() {
         return tenTacGia;
     }
@@ -55,13 +48,5 @@ public class Sach extends TaiLieu {
                 System.out.println("Vui lòng nhập một số hợp lệ!");
             }
         }
-    }
-
-    @Override
-    public void hienThi() {
-        System.out.println("== SÁCH ==");
-        super.hienThi();
-        System.out.println("Tên tác giả: " + tenTacGia);
-        System.out.println("Số trang: " + soTrang);
     }
 }

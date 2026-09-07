@@ -3,13 +3,29 @@ package frontend;
 import java.util.Scanner;
 
 import backend.QuanLySach;
+import entity.TapChi;
+import entity.enums.Thang;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         QuanLySach quanLySach = new QuanLySach();
+        taoDuLieuMacDinh(quanLySach);
         menu(sc, quanLySach);
         sc.close();
+    }
+
+    private static void taoDuLieuMacDinh(QuanLySach quanLySach) {
+        String[] nhaXuatBan = {"Giáo Dục", "Kim Đồng", "Trẻ", "Khoa Học", "Thanh Niên",
+                "Văn Hóa", "Hà Nội", "Phụ Nữ", "Lao Động", "Thời Đại"};
+        for (int i = 1; i <= 10; i++) {
+            quanLySach.themTaiLieu(new TapChi(
+                    String.format("TC%02d", i),
+                    nhaXuatBan[i - 1],
+                    100 + i,
+                    i * 3,
+                    Thang.values()[i - 1]));
+        }
     }
 
     public static void menu(Scanner sc, QuanLySach quanLySach) {

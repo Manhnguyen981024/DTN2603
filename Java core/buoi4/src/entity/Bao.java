@@ -1,5 +1,8 @@
 package entity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import entity.enums.LoaiTaiLieu;
@@ -8,12 +11,6 @@ public class Bao extends TaiLieu {
     private String ngayPhatHanh;
 
     public Bao() {}
-
-    public Bao(String maTaiLieu, String tenNhaXuatBan, int soBanPhatHanh,
-               String ngayPhatHanh) {
-        super(maTaiLieu, tenNhaXuatBan, soBanPhatHanh);
-        this.ngayPhatHanh = ngayPhatHanh;
-    }
 
     public String getNgayPhatHanh() {
         return ngayPhatHanh;
@@ -31,14 +28,17 @@ public class Bao extends TaiLieu {
     @Override
     public void nhapThongTin(Scanner sc) {
         super.nhapThongTin(sc);
-        System.out.print("Ngày phát hành (dd/mm/yyyy): ");
-        ngayPhatHanh = sc.nextLine();
-    }
-
-    @Override
-    public void hienThi() {
-        System.out.println("== BÁO ==");
-        super.hienThi();
-        System.out.println("Ngày phát hành: " + ngayPhatHanh);
+        DateTimeFormatter dinhDang = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        while (true) {
+            System.out.print("Ngày phát hành (dd/mm/yyyy): ");
+            String input = sc.nextLine();
+            try {
+                LocalDate.parse(input, dinhDang);
+                ngayPhatHanh = input;
+                break;
+            } catch (DateTimeParseException e) {
+                System.out.println("Ngày phát hành không đúng định dạng dd/mm/yyyy, vui lòng nhập lại!");
+            }
+        }
     }
 }

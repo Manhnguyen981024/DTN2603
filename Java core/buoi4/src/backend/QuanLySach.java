@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import entity.Bao;
@@ -19,6 +20,10 @@ public class QuanLySach implements IQuanLySach {
             }
         }
         return false;
+    }
+
+    public void themTaiLieu(TaiLieu taiLieu) {
+        dsTaiLieu.add(taiLieu);
     }
 
     @Override
@@ -89,14 +94,44 @@ public class QuanLySach implements IQuanLySach {
 
     @Override
     public void hienThiDanhSach() {
-        if (dsTaiLieu.isEmpty()) {
+        hienThiDanhSach(dsTaiLieu);
+    }
+
+    public void hienThiDanhSach(List<TaiLieu> ds) {
+        if (ds.isEmpty()) {
             System.out.println("Danh sách tài liệu trống!");
             return;
         }
-        for (TaiLieu tl : dsTaiLieu) {
-            tl.hienThi();
-            System.out.println("--------------------------");
+
+        String khung = String.format("+%-14s+%-22s+%-10s+%-11s+%-22s+%-10s+%-14s+%-12s+%-14s+",
+                "", "", "", "", "", "", "", "", "").replace(' ', '-');
+        String tieuDe = "| %-12s | %-20s | %-8s | %-9s | %-20s | %-8s | %-12s | %-10s | %-12s |%n";
+        String dong = "| %-12s | %-20s | %-8d | %-9s | %-20s | %-8s | %-12s | %-10s | %-12s |%n";
+
+        System.out.println(khung);
+        System.out.printf(tieuDe, "Mã tài liệu", "Tên NXB", "Số bản", "Loại", "Tác giả",
+                "Số trang", "Số phát hành", "Tháng PH", "Ngày PH");
+        System.out.println(khung);
+
+        for (TaiLieu tl : ds) {
+            String tacGia = "", soTrang = "", soPhatHanh = "", thangPhatHanh = "", ngayPhatHanh = "";
+            if (tl instanceof Sach) {
+                Sach sach = (Sach) tl;
+                tacGia = sach.getTenTacGia();
+                soTrang = String.valueOf(sach.getSoTrang());
+            } else if (tl instanceof TapChi) {
+                TapChi tapChi = (TapChi) tl;
+                soPhatHanh = String.valueOf(tapChi.getSoPhatHanh());
+                thangPhatHanh = tapChi.getThangPhatHanh().getTen();
+            } else if (tl instanceof Bao) {
+                Bao bao = (Bao) tl;
+                ngayPhatHanh = bao.getNgayPhatHanh();
+            }
+            System.out.printf(dong, tl.getMaTaiLieu(), tl.getTenNhaXuatBan(), tl.getSoBanPhatHanh(),
+                    tl.getLoai().getTen(), tacGia, soTrang, soPhatHanh, thangPhatHanh, ngayPhatHanh);
         }
+
+        System.out.println(khung);
     }
 
     @Override
@@ -132,16 +167,17 @@ public class QuanLySach implements IQuanLySach {
                 break;
         }
 
-        boolean found = false;
+        List<TaiLieu> ketQua = new ArrayList<>();
         for (TaiLieu tl : dsTaiLieu) {
             if (tl.getLoai() == loai) {
-                tl.hienThi();
-                System.out.println("--------------------------");
-                found = true;
+                ketQua.add(tl);
             }
         }
-        if (!found) {
+
+        if (ketQua.isEmpty()) {
             System.out.println("Không có tài liệu loại " + loai.getTen() + "!");
+        } else {
+            hienThiDanhSach(ketQua);
         }
     }
 }
