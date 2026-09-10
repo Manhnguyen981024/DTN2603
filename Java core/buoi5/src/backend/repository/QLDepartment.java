@@ -20,12 +20,13 @@ public class QLDepartment implements IQLDepartment {
     public List<Department> findAll() {
         List<Department> departments = new ArrayList<>();
 
-        try (Connection conn = DatabaseConfig.getConnection()) {
+        try (
+            Connection conn = DatabaseConfig.getConnection();            
             PreparedStatement statement = conn.prepareStatement(SQL_STRING);
-            ResultSet resultSet = statement.executeQuery();
-
+            ResultSet resultSet = statement.executeQuery()) {
+            
             while (resultSet.next()) {
-                departments.add(DepartmentMapper.mapperToDepartment(resultSet));
+                departments.add(DepartmentMapper.mapToDepartment(resultSet));
             }
 
         } catch (Exception e) {

@@ -7,7 +7,7 @@ import entity.Department;
 
 public class DepartmentMapper {
 
-    public static Department mapperToDepartment(ResultSet resultSet) throws SQLException {
+    public static Department mapToDepartment(ResultSet resultSet) throws SQLException {
         if (resultSet == null) {
             return null;
         }

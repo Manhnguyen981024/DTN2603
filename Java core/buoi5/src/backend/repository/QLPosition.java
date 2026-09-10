@@ -21,12 +21,13 @@ public class QLPosition implements IQLPosition {
     public List<Position> findAll() {
         List<Position> positions = new ArrayList<>();
 
-        try (Connection conn = DatabaseConfig.getConnection()) {
+        try (
+            Connection conn = DatabaseConfig.getConnection();
             PreparedStatement statement = conn.prepareStatement(SQL_STRING);
-            ResultSet resultSet = statement.executeQuery();
-
+            ResultSet resultSet = statement.executeQuery()) {
+           
             while (resultSet.next()) {
-                positions.add(PositionMapper.mapperToPosition(resultSet));
+                positions.add(PositionMapper.mapToPosition(resultSet));
             }
 
         } catch (SQLException e) {

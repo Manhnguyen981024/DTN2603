@@ -11,7 +11,7 @@ import entity.enums.PositionName;
 
 public class AccountMapper {
 
-    public static Account mapperToAccount(ResultSet resultSet) throws SQLException {
+    public static Account mapToAccount(ResultSet resultSet) throws SQLException {
         if (resultSet == null) {
             return null;
         }

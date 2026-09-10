@@ -8,7 +8,7 @@ import entity.enums.PositionName;
 
 public class PositionMapper {
 
-    public static Position mapperToPosition(ResultSet resultSet) throws SQLException {
+    public static Position mapToPosition(ResultSet resultSet) throws SQLException {
         if (resultSet == null) {
             return null;
         }

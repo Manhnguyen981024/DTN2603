@@ -25,17 +25,16 @@ public class QLAccount implements IQLAccount {
     public List<Account> findAll() {
         List<Account> accounts = new ArrayList<>();
 
-        try (Connection conn = DatabaseConfig.getConnection()){
+        try (
+            Connection conn = DatabaseConfig.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-
+            ResultSet resultSet = statement.executeQuery(); ){
             while (resultSet.next()) {
-                accounts.add(AccountMapper.mapperToAccount(resultSet));
+                accounts.add(AccountMapper.mapToAccount(resultSet));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } 
         
         return accounts;
     }

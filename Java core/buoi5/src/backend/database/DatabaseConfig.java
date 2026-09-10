@@ -11,29 +11,9 @@ public class DatabaseConfig {
 
     private DatabaseConfig() {}
 
-    public static Connection getConnection() {
-        try {
-            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("connect success!");
-            return connection;
-        } catch (SQLException e) {
-            System.err.println("connect failed: " + e.getMessage());
-            return null;
-        }
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
-
-    public static void closeConnection(Connection connection) {
-        if (connection == null) {
-            return;
-        }
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            System.err.println("close connection failed: " + e.getMessage());
-        }
-    }
-
 
     public static void main(String[] args) {
         try (Connection connection = DatabaseConfig.getConnection()) {
