@@ -41,7 +41,9 @@ public class PositionService {
     }
 
     private void validatePosition(Position position) {
-        if (position == null || position.getPositionName() == null) {
+        if (position == null
+                || position.getPositionName() == null
+                || position.getPositionName().isBlank()) {
             throw new IllegalArgumentException("Position name cannot be null");
         }
     }

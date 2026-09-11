@@ -12,7 +12,6 @@ import entity.Account;
 import entity.Department;
 import entity.Position;
 import entity.enums.Gender;
-import entity.enums.PositionName;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
@@ -193,8 +192,9 @@ public class Main {
 
     public static void createPosition(PositionService positionService) {
         System.out.println("==== Create Position ====");
+        ConsolePrinter.printAllPositions(positionService.findAll());
         Position position = new Position();
-        position.setPositionName(readPositionName().name());
+        position.setPositionName(readString("Enter new position name: "));
         positionService.createPosition(position);
     }
 
@@ -204,7 +204,7 @@ public class Main {
 
         Position position = new Position();
         position.setPositionId(readInt("Enter position id to update: "));
-        position.setPositionName(readPositionName().name());
+        position.setPositionName(readString("Enter new position name: "));
         positionService.updatePosition(position);
     }
 
@@ -212,21 +212,6 @@ public class Main {
         System.out.println("==== Delete Position ====");
         ConsolePrinter.printAllPositions(positionService.findAll());
         positionService.deletePosition(readInt("Enter position id to delete: "));
-    }
-
-    private static PositionName readPositionName() {
-        PositionName[] positionNames = PositionName.values();
-        for (int index = 0; index < positionNames.length; index++) {
-            System.out.println((index + 1) + ". " + positionNames[index]);
-        }
-
-        while (true) {
-            int choice = readInt("Enter position name: ");
-            if (choice >= 1 && choice <= positionNames.length) {
-                return positionNames[choice - 1];
-            }
-            System.out.println("Invalid position choice.");
-        }
     }
 
     public static void createAccount(AccountService accountService) {
