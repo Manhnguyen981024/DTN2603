@@ -93,12 +93,11 @@ public class AccountServiceImpl implements IAccountService {
             throw new IllegalArgumentException("File does not exist");
         }
 
-        String header;
         List<Account> accounts = new ArrayList<>();
         List<String> errorLines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))){
-            header = br.readLine();
             String line;
+            errorLines.add(br.readLine() +",error_message");
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
                 if (fields.length < 6) {
@@ -124,8 +123,7 @@ public class AccountServiceImpl implements IAccountService {
                 totalCount = accountRepository.saveAll(accounts);
             }
 
-            if (!errorLines.isEmpty()) {
-                errorLines.add(header+",error_message");
+            if (errorLines.size() > 1) {
                 writeErrorLog(errorLines);
             }
         } catch (Exception e) {
